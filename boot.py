@@ -34,6 +34,7 @@ print("Connection successful")
 print(station.ifconfig())
 
 ### I2C Bus Setup ###
+
 from machine import Pin, PWM, I2C
 
 i2c = I2C(0)
