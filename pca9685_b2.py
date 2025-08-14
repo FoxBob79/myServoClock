@@ -9,12 +9,12 @@ import ustruct
 import time
 
 
-class PCA9685:
+class PCA9685B2:
     """
     This class models the PCA9685 board, used to control up to 16
     servos, using just 2 wires for control over the I2C interface
     """
-    def __init__(self, i2c, address=0x40):  ### address 0x40 for board 1, 0x41 for board 2, etc ###
+    def __init__(self, i2c, address=0x41):  ### address 0x40 for board 1, 0x41 for board 2, etc ###
         """
         class constructor
 
