@@ -1,4 +1,4 @@
-### The BASIC BOOT SETUP ###
+### The ESP32 BASIC BOOT SETUP ###
 
 try:
   import usocket as socket
