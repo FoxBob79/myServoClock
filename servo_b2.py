@@ -7,7 +7,7 @@ import math
 
 
 class ServosB2:
-    def __init__(self, i2c, address=0x41, freq=50, min_us=600, max_us=2400,   ### address 0x40 for board 1, 0x41 for board 2, etc ###
+    def __init__(self, i2c, address=0x41, freq=50, min_us=600, max_us=2400,   ### address 0x40 for Board #1, 0x41 for Board #2, etc ###
                  degrees=180):
         self.period = 1000000 / freq
         self.min_duty = self._us2duty(min_us)
@@ -36,4 +36,4 @@ class ServosB2:
         self.pca9685_b2.duty(index, duty)
 
     def release(self, index):
-        self.pca9685_b2.duty(index, 20)
+        self.pca9685_b2.duty(index, 0)

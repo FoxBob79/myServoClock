@@ -1,4 +1,11 @@
-### The Servo-Setup ###
+############################
+### MyServoClock Projekt ###
+###      FoxBob79        ###
+###        2025          ###
+############################
+
+
+### The Servo- and PCA9685 Setup ###
 
 from pca9685 import PCA9685
 from pca9685_b2 import PCA9685B2
@@ -6,39 +13,37 @@ from machine import I2C, Pin
 from servo import Servos
 from servo_b2 import ServosB2
 
-sda = Pin(21)
-scl = Pin(22)
+sda = Pin(21)                                           # sda Pin ESP32
+scl = Pin(22)                                           # scl Pin ESP32
 id = 1
 i2c = I2C(id=id, sda=sda, scl=scl)
 
-pca = PCA9685(i2c=i2c)
-pca2 = PCA9685B2(i2c=i2c)
-servo = Servos(i2c=i2c)
-servo2 = ServosB2(i2c=i2c)
-
+pca = PCA9685(i2c=i2c)                                  # PCA9685 Board #1
+pca2 = PCA9685B2(i2c=i2c)                               # PCA9685 Board #2
+servo = Servos(i2c=i2c)                                 # Servos @ Board #1
+servo2 = ServosB2(i2c=i2c)                              # Servos @ Board #2
 
 
 ### TEST: Eingabe ###
 
 print("Bitte geben Sie eine Zahl für SegAnz01 ein:")
 
-sz = input()
+sz = input()                                            # Stunden-Zehner
 SegAnz01 = int(sz)
 
 print("Bitte geben Sie eine Zahl für SegAnz02 ein:")
 
-se = input()
+se = input()                                            # Stunden-Einer
 SegAnz02 = int(se)
 
 print("Bitte geben Sie eine Zahl für SegAnz03 ein:")
 
-mz = input()
+mz = input()                                            # Minuten-Zehner
 SegAnz03 = int(mz)
 
 print("Bitte geben Sie eine Zahl für SegAnz04 ein:")
-me = input()
+me = input()                                            # Minuten-Einer
 SegAnz04 = int(me)
-
 
 
 ### Servo Position SegmentAnzeige 01 ###

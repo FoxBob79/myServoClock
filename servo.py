@@ -7,7 +7,7 @@ import math
 
 
 class Servos:
-    def __init__(self, i2c, address=0x40, freq=50, min_us=600, max_us=2400,   ### address 0x40 for board 1, 0x41 for board 2, etc ###
+    def __init__(self, i2c, address=0x40, freq=50, min_us=600, max_us=2400,   ### address 0x40 for Board #1, 0x41 for Board #2, etc ###
                  degrees=180):
         self.period = 1000000 / freq
         self.min_duty = self._us2duty(min_us)
