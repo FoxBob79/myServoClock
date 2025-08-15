@@ -17,22 +17,27 @@ servo = Servos(i2c=i2c)
 servo2 = ServosB2(i2c=i2c)
 
 
+
 ### TEST: Eingabe ###
 
 print("Bitte geben Sie eine Zahl für SegAnz01 ein:")
 
-z = input()
-SegAnz01 = int(z)
+sz = input()
+SegAnz01 = int(sz)
 
 print("Bitte geben Sie eine Zahl für SegAnz02 ein:")
 
-y = input()
-SegAnz02 = int(y)
+se = input()
+SegAnz02 = int(se)
 
 print("Bitte geben Sie eine Zahl für SegAnz03 ein:")
 
-x = input()
-SegAnz03 = int(x)
+mz = input()
+SegAnz03 = int(mz)
+
+print("Bitte geben Sie eine Zahl für SegAnz04 ein:")
+me = input()
+SegAnz04 = int(me)
 
 
 
@@ -220,7 +225,7 @@ else:
     servo.position(index=14, degrees=0)
 
 
-    ### Servo Position SegmentAnzeige 03 ###
+### Servo Position SegmentAnzeige 03 ###
 
 if SegAnz03 == 1:
     servo2.position(index=0, degrees=180)
@@ -311,3 +316,93 @@ else:
     servo2.position(index=5, degrees=180)
     servo2.position(index=6, degrees=0)
 
+### Servo Position SegmentAnzeige 04 ###
+
+if SegAnz04 == 1:
+    servo2.position(index=8, degrees=180)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=180)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=180)
+    servo2.position(index=14, degrees=0)
+elif SegAnz04 == 2:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=180)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=90)
+    servo2.position(index=13, degrees=180)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 3:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=180)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 4:
+    servo2.position(index=8, degrees=180)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=180)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 5:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=0)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 6:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=0)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=90)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 7:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=180)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=180)
+    servo2.position(index=14, degrees=0)
+elif SegAnz04 == 8:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=90)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 9:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=90)
+elif SegAnz04 == 0:
+    servo2.position(index=8, degrees=90)
+    servo2.position(index=9, degrees=90)
+    servo2.position(index=10, degrees=90)
+    servo2.position(index=11, degrees=90)
+    servo2.position(index=12, degrees=90)
+    servo2.position(index=13, degrees=90)
+    servo2.position(index=14, degrees=0)
+else:
+    servo2.position(index=8, degrees=180)
+    servo2.position(index=9, degrees=0)
+    servo2.position(index=10, degrees=180)
+    servo2.position(index=11, degrees=180)
+    servo2.position(index=12, degrees=0)
+    servo2.position(index=13, degrees=180)
+    servo2.position(index=14, degrees=0)
