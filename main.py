@@ -1,5 +1,5 @@
 ############################
-### MyServoClock Projekt ###
+### myServoClock Projekt ###
 ###      FoxBob79        ###
 ###        2025          ###
 ############################
@@ -24,25 +24,65 @@ servo = Servos(i2c=i2c)                                 # Servos @ Board #1
 servo2 = ServosB2(i2c=i2c)                              # Servos @ Board #2
 
 
-### TEST: Eingabe ###
+### The Time and Clock Setup ###
 
-print("Bitte geben Sie eine Zahl für SegAnz01 ein:")
+import time
 
-sz = input()                                            # Stunden-Zehner
+# Winterzeit / Sommerzeit
+#GMT_OFFSET = 3600 * 1 # 3600 = 1 h (Winterzeit)
+GMT_OFFSET = 3600 * 2 # 3600 = 1 h (Sommerzeit)
+
+# NTP-Host
+NTP_HOST = "pool.ntp.org"
+
+# Funktion: Zeit per NTP holen
+def getTimeNTP():
+    NTP_DELTA = 2208988800
+    NTP_QUERY = bytearray(48)
+    NTP_QUERY[0] = 0x1B
+    addr = socket.getaddrinfo(NTP_HOST, 123)[0][-1]
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.settimeout(1)
+        res = s.sendto(NTP_QUERY, addr)
+        msg = s.recv(48)
+    finally:
+        s.close()
+    ntp_time = struct.unpack("!I", msg[40:44])[0]
+    return time.gmtime(ntp_time - NTP_DELTA + GMT_OFFSET)
+
+# Funktion: RTC-Zeit setzen
+def setTimeRTC():
+    # NTP-Zeit holen
+    tm = getTimeNTP()
+    machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6], tm[3], tm[4], tm[5], 0))
+
+# Zeit setzen
+setTimeRTC()
+
+# Aktuelles Datum ausgeben
+print()
+print(machine.RTC().datetime())
+
+
+### TEST: Eingabe Uhrzeit ###
+
+print("Bitte geben Sie die Stunden ein:")
+
+std= input()
+sz = int(std) // 10
+se = int(std) % 10
+
 SegAnz01 = int(sz)
-
-print("Bitte geben Sie eine Zahl für SegAnz02 ein:")
-
-se = input()                                            # Stunden-Einer
 SegAnz02 = int(se)
 
-print("Bitte geben Sie eine Zahl für SegAnz03 ein:")
+print("Bitte geben Sie die Minuten ein:")
 
-mz = input()                                            # Minuten-Zehner
+min = input()
+mz = int(min) // 10
+me = int(min) % 10
+
 SegAnz03 = int(mz)
-
-print("Bitte geben Sie eine Zahl für SegAnz04 ein:")
-me = input()                                            # Minuten-Einer
 SegAnz04 = int(me)
 
 
