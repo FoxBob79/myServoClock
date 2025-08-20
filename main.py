@@ -32,8 +32,10 @@ import time
 #GMT_OFFSET = 3600 * 1 # 3600 = 1 h (Winterzeit)
 GMT_OFFSET = 3600 * 2 # 3600 = 1 h (Sommerzeit)
 
+
 # NTP-Host
 NTP_HOST = "pool.ntp.org"
+
 
 # Funktion: Zeit per NTP holen
 def getTimeNTP():
@@ -55,30 +57,41 @@ def getTimeNTP():
 def setTimeRTC():
     # NTP-Zeit holen
     tm = getTimeNTP()
-    machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6], tm[3], tm[4], tm[5], 0))
+    machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6]+1, tm[3], tm[4], tm[5], 0))
+
 
 # Zeit setzen
 setTimeRTC()
 
-# Aktuelles Datum ausgeben
+
+# Aktuelles Datum und Uhrzeit einlesen
+rtc = machine.RTC()
+datetime = rtc.datetime()
+
+
+# Aktuelles Datum und Uhrzeit ausgeben
+print('Tuple:', datetime)
 print()
-print(machine.RTC().datetime())
+print('     Jahr:', datetime[0])
+print('    Monat:', datetime[1])
+print('      Tag:', datetime[2])
+print('Wochentag:', datetime[3])
+print('   Stunde:', datetime[4])
+print('   Minute:', datetime[5])
+print('  Sekunde:', datetime[6])
 
 
-### TEST: Eingabe Uhrzeit ###
-
-print("Bitte geben Sie die Stunden ein:")
-
-std= input()
+# Aktuelle Stunden an SegAnz01 und SegAnz02 übergeben
+std= datetime[4]
 sz = int(std) // 10
 se = int(std) % 10
 
 SegAnz01 = int(sz)
 SegAnz02 = int(se)
 
-print("Bitte geben Sie die Minuten ein:")
 
-min = input()
+# Aktuelle Minuten an SegAnz03 und SegAnz04 übergeben
+min = datetime[5]
 mz = int(min) // 10
 me = int(min) % 10
 
